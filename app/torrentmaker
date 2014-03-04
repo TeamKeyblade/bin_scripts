@@ -24,7 +24,7 @@ if [ ! "$needsinstall" ]; then
 else
 	echo "A prerequisites needs to be installed"
 	sudo apt-get install $needsinstall
-if
+fi
 
 echo "You want to make a webseeder?"
 read answer

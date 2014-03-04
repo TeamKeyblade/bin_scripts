@@ -24,7 +24,7 @@ if [ ! "$needsinstall" ]; then
 else
 	echo "A prerequisites needs to be installed"
 	sudo apt-get install $needsinstall
-if
+fi
 
 if [ "$1" == "clear" ]; then
 	sudo wondershaper clear eth0
