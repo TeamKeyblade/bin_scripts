@@ -1,0 +1,167 @@
+#!/bin/bash
+# Copyright (C) 2014 Sean Donovan
+
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+
+#    http://www.apache.org/licenses/LICENSE-2.0
+
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+main() {
+clear
+cd ~
+echo "How long would you like the computer to sleep for?"
+echo "Type list to see a list of units of time supported"
+echo "Type exit to leave program"
+echo "Example = 10 hours"
+read decision
+
+#if what was typed had any upper case letters convert it 
+#to lower case into another file and then rewrite the 
+#variable with the modification
+
+if ( echo $decision | grep -q [A-Z] );then 
+	decision=$(echo $decision | sed -e 's/\(.*\)/\L\1/')
+fi
+
+#take what was typed and put it into appropriate variables
+
+time=$(echo $decision | sed 's/[^0-9]*//g')
+length=$(echo $decision | sed 's/[^a-z]*//g')
+
+#exit if; quit program immediately if told to do so, easy way to work on this script
+
+if [ $length == "exit" ]; then
+	clear
+	echo "Program Terminated"
+	exit 0
+fi
+
+#list if; type list and u get all the units in a list! amazing!
+
+if [ $length == "list" ]; then
+	echo ""
+	echo "All supported units of time is:"
+	echo "seconds, minutes, hours, days, weeks, fortnights,"
+	echo "months, years, olympiads, decades, centuries, and millennia"
+	read -p "Press Enter to continue: " done
+	main
+fi
+
+#this checks to see if what was typed had any numbers in
+#it, and if it doesnt the script will delete all unnecessary files
+#and terminate early
+
+if ( ! echo $time | grep -q [0-9]); then
+	echo ""
+	echo "You need to type in a number at the very least, try again!"
+	read -p "Press Enter to continue: " done
+	main
+fi
+
+#the beginning of all the if statements to figure out how to calculate the results, 
+#it uses the unit of time specified to determine the length of the 
+#effect the user wants
+
+#seconds if; easy
+
+if [ $length == "second" ] || [ $length == "seconds" ]; then
+	seconds=$time
+fi
+
+#minutes if; nothing to complicated
+
+if [ $length == "minute" ] || [ $length == "minutes" ]; then
+	seconds=$(($time * 60))
+fi
+
+#hours if; yeap yeap
+
+if [ $length == "hour" ] || [ $length == "hours" ]; then
+	seconds=$((($time * 60) * 60))
+fi
+
+#days if; *yawn..*
+
+if [ $length == "day" ] || [ $length == "days" ]; then
+	seconds=$(((($time * 60) * 60) * 24))
+fi
+
+#weeks if; *sleeping*
+
+if [ $length == "week" ] || [ $length == "weeks" ]; then
+	seconds=$((((($time * 60) * 60) * 24) * 7))
+fi
+
+#fortnight if; just in case!
+
+if [ $length == "fortnight" ] || [ $length == "fortnight" ]; then
+	seconds=$((((($time * 60) * 60) * 24) * 14))
+fi
+
+#months if; um... what?? lol.. months was hard to calculate with a decimal
+#so i had to use the one that was closest without one, which is minutes
+
+if [ $length == "month" ] || [ $length == "months" ]; then
+	seconds=$((($time * 60) * 43829))
+fi
+
+#years if; because of the calculated disaster of months i had to use the only
+#one that wasnt a decimal, which is ironically the actual answer of seconds 
+#there is in a year x.x
+#after this it will go back to just multiplying from this
+
+if [ $length == "year" ] || [ $length == "years" ]; then
+	seconds=$(($time * 31556926))
+fi
+
+#olympiads if; i know i know.. i threw it in just because
+
+if [ $length == "olympiad" ] || [ $length == "olympiads" ]; then
+	seconds=$((($time * 31556926) * 4))
+fi
+
+#decades if; rip van winkle anyone?
+
+if [ $length == "decade" ] || [ $length == "decades" ]; then
+	seconds=$((($time * 31556926) * 10))
+fi
+
+#centuries if; sleep as long as vampires do!
+
+if [ $length == "century" ] || [ $length == "centuries" ]; then
+	seconds=$((($time * 31556926) * 100))
+fi
+
+#millenia if; by the time this sleep is done; would computers even be around?
+
+if [ $length == "millenium" ] || [ $length == "millenniums" ] || [ $length == "millennia" ] ; then
+	seconds=$((($time * 31556926) * 1000))
+fi
+
+#this will ask if you want to actually put the computer to sleep
+#be best to make sure they know what it is theyre actually doing
+echo ""
+echo "The system will now sleep for" $time $length
+echo "Is this ok?"
+read sleepy
+
+if [ $sleepy == "yes" ] || [ $sleepy == "y" ]; then
+	#the actual code to put ur computer to sleep.. finally! too bad
+	#it requires superuser privileges..
+	echo ""
+	sudo rtcwake -l -m mem -s $seconds
+else
+	echo ""
+	echo "I'm sorry, lets try again.."
+	read -p "Press Enter to continue: " done
+	main
+fi
+}
+main
