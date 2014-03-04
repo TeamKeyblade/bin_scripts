@@ -13,11 +13,20 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-if ( type -a dropbox &> /dev/null ); then
-	watch -n .1 dropbox status
-elif ( find $HOME/.dropbox/dropbox.py &> /dev/null ); then
-	watch -n .1 $HOME/.dropbox/dropbox.py status
-else
-	echo "Dropbox isn't setup correctly"
+cd $HOME
+
+if ( ! find $HOME/.dropbox-dist &> /dev/null ); then
+	if ( uname -a | grep -q x86_64 ); then
+		wget -O dropbox.tar.gz "http://www.dropbox.com/download/?plat=lnx.x86_64"
+	else
+		wget -O dropbox.tar.gz "http://www.dropbox.com/download/?plat=lnx.x86"
+	fi
+
+	tar -xzvf dropbox.tar.gz
+	rm dropbox.tar.gz
 fi
 
+if ( ! find $HOME/.dropbox/dropbox.py &> /dev/null ); then
+	wget -O $HOME/.dropbox/dropbox.py "http://www.dropbox.com/download?dl=packages/dropbox.py"
+	chmod 755 $HOME/.dropbox/dropbox.py
+fi
