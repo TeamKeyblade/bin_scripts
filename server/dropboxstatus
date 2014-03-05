@@ -14,8 +14,16 @@
 # limitations under the License.
 
 if ( type -a dropbox &> /dev/null ); then
+	if [ "$( dropbox status )" == "Dropbox isn't running!" ]; then
+		echo "Dropbox isn't running! attempting start"
+		dropbox start
+	fi
 	watch -n .1 dropbox status
 elif ( find $HOME/.dropbox/dropbox.py &> /dev/null ); then
+	if [ "$( $HOME/.dropbox/dropbox.py status )" == "Dropbox isn't running!" ]; then
+		echo "Dropbox isn't running! attempting start"
+		$HOME/.dropbox/dropbox.py start
+	fi
 	watch -n .1 $HOME/.dropbox/dropbox.py status
 else
 	echo "Dropbox isn't setup correctly"
