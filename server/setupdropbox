@@ -27,6 +27,8 @@ if ( ! find $HOME/.dropbox-dist &> /dev/null ); then
 fi
 
 if ( ! find $HOME/.dropbox/dropbox.py &> /dev/null ); then
+	mkdir -p $HOME/.dropbox
+
 	wget -O $HOME/.dropbox/dropbox.py "http://www.dropbox.com/download?dl=packages/dropbox.py"
 	chmod 755 $HOME/.dropbox/dropbox.py
 fi
