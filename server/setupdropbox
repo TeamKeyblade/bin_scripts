@@ -13,22 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-cd $HOME
-
-if ( ! find $HOME/.dropbox-dist &> /dev/null ); then
-	if ( uname -a | grep -q x86_64 ); then
-		wget -O dropbox.tar.gz "http://www.dropbox.com/download/?plat=lnx.x86_64"
-	else
-		wget -O dropbox.tar.gz "http://www.dropbox.com/download/?plat=lnx.x86"
-	fi
-
-	tar -xzvf dropbox.tar.gz
-	rm dropbox.tar.gz
-fi
-
-if ( ! find $HOME/.dropbox/dropbox.py &> /dev/null ); then
-	mkdir -p $HOME/.dropbox
-
-	wget -O $HOME/.dropbox/dropbox.py "http://www.dropbox.com/download?dl=packages/dropbox.py"
-	chmod 755 $HOME/.dropbox/dropbox.py
+if ( ! find /usr/bin/dropbox &> /dev/null ); then
+	sudo wget -O /usr/bin/dropbox "http://www.dropbox.com/download?dl=packages/dropbox.py"
+	sudo chmod 755 /usr/bin/dropbox
 fi

@@ -28,4 +28,3 @@ elif ( find $HOME/.dropbox/dropbox.py &> /dev/null ); then
 else
 	echo "Dropbox isn't setup correctly"
 fi
-
