@@ -32,3 +32,5 @@ if [ $answer == "yes" ] || [ $answer == "y" ]; then
 else
 	echo "Dropbox not set to auto start"
 fi
+
+dropbox start
