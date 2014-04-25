@@ -1,4 +1,4 @@
-Swordrune10's Debian/Ubuntu Scripts
+Swordrune10's Redhat/Fedora Scripts
 -------------------------
 
 
