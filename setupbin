@@ -14,12 +14,12 @@
 # limitations under the License.
 
 cd ~
-if ( grep -q HOME/bin/android .profile );then
+if ( grep -q HOME/bin/android .bash_profile );then
 	echo ".profile doesn't need to be patched"
-elif ( ! grep -q HOME/bin/android .profile )  && ( find $HOME/bin/private &> /dev/null );then
-	sed -i '/PATH"/ a\    PATH="$HOME/bin/android:$HOME/bin/app:$HOME/bin/private:$HOME/bin/server:$PATH"' .profile
+elif ( ! grep -q HOME/bin/android .bash_profile )  && ( find $HOME/bin/private &> /dev/null );then
+	sed -i '/PATH"/ a\    PATH="$PATH:$HOME/bin/android:$HOME/bin/app:$HOME/bin/private:$HOME/bin/server"' .profile
 	echo "patched .profile"
 else
-	sed -i '/PATH"/ a\    PATH="$HOME/bin/android:$HOME/bin/app:$HOME/bin/server:$PATH"' .profile
+	sed -i '/PATH"/ a\    PATH="$PATH:$HOME/bin/android:$HOME/bin/app:$HOME/bin/server"' .profile
 	echo "patched .profile"
 fi
