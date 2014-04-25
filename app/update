@@ -13,7 +13,5 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-sudo apt-get update
-sudo apt-get --allow-unauthenticated dist-upgrade
-sudo apt-get autoclean
-sudo apt-get autoremove
+sudo yum update
+sudo yum clean all
