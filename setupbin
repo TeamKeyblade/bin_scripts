@@ -17,9 +17,9 @@ cd ~
 if ( grep -q HOME/bin/android .bash_profile );then
 	echo ".bash_profile doesn't need to be patched"
 elif ( ! grep -q HOME/bin/android .bash_profile )  && ( find $HOME/bin/private &> /dev/null );then
-	sed -i '/PATH="/ a\    PATH="$PATH:$HOME/bin/android:$HOME/bin/app:$HOME/bin/private:$HOME/bin/server"' .bash_profile
+	sed -i '/PATH=/ a\ PATH="$PATH:$HOME/bin/android:$HOME/bin/app:$HOME/bin/private:$HOME/bin/server"' .bash_profile
 	echo "patched .bash_profile"
 else
-	sed -i '/PATH="/ a\    PATH="$PATH:$HOME/bin/android:$HOME/bin/app:$HOME/bin/server"' .bash_profile
+	sed -i '/PATH=/ a\ PATH="$PATH:$HOME/bin/android:$HOME/bin/app:$HOME/bin/server"' .bash_profile
 	echo "patched .bash_profile"
 fi
