@@ -14,4 +14,3 @@
 # limitations under the License.
 
 sudo yum upgrade
-sudo yum clean all
