@@ -13,4 +13,5 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-sudo add-apt-repository --remove "$@"
+cd /etc/yum.repos.d
+sudo rm -rf "$@"
