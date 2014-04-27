@@ -23,7 +23,7 @@ if [ ! "$needsinstall" ]; then
 	echo "All prerequisites are already installed"
 else
 	echo "A prerequisites needs to be installed"
-	sudo apt-get install $needsinstall
+	sudo yum install $needsinstall
 fi
 
 if [ "$1" == "clear" ]; then
