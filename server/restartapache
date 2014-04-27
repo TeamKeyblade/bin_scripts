@@ -13,4 +13,4 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-sudo /etc/init.d/apache2 restart
+sudo service httpd restart
