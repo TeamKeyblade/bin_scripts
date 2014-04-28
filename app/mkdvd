@@ -14,9 +14,12 @@
 # limitations under the License.
 
 echo "Checking if prerequisites are installed"
-for f in `echo libav-tools` `echo dvdauthor` `echo genisoimage`
+for f in `echo avconv` `echo dvdauthor` `echo genisoimage`
 do
 	if ( ! type -a $f &> /dev/null ); then
+		if [ $f == "avconv" ]; then
+			f="libav-tools"
+		fi
 		needsinstall="$needsinstall $f"
 	fi
 done
