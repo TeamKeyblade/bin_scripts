@@ -62,7 +62,7 @@ cd "$whereisvideo"/temp
 
 movietitle=$(echo "$moviefile" | sed s/\.[^\.]*$//)
 
-avconv -i ../"$moviefile" -qscale 1 -target $movietodvdstandard "$movietitle".mpg
+avconv -i ../"$moviefile" -qscale 1 -vf "scale=640:-1" -target $movietodvdstandard "$movietitle".mpg
 
 dvdauthor -o dvd/ -t "$movietitle".mpg
 
