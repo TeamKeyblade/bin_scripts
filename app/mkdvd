@@ -14,12 +14,9 @@
 # limitations under the License.
 
 echo "Checking if prerequisites are installed"
-for f in `echo avconv` `echo dvdauthor` `echo genisoimage`
+for f in `echo ffmpeg` `echo dvdauthor` `echo genisoimage`
 do
 	if ( ! type -a $f &> /dev/null ); then
-		if [ $f == "avconv" ]; then
-			f="libav-tools"
-		fi
 		needsinstall="$needsinstall $f"
 	fi
 done
@@ -28,11 +25,10 @@ if [ ! "$needsinstall" ]; then
 	echo "All prerequisites are already installed"
 else
 	echo "Adding necessary repo"
-	addrepo ppa:jon-severinsson/ffmpeg
+	addrpmfusion
 
 	echo "Some prerequisites needs to be installed"
-	sudo apt-get update
-	sudo apt-get install $needsinstall
+	sudo yum install $needsinstall
 fi
 
 videostandard () {
