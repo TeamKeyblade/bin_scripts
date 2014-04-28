@@ -27,7 +27,11 @@ done
 if [ ! "$needsinstall" ]; then
 	echo "All prerequisites are already installed"
 else
+	echo "Adding necessary repo"
+	addrepo ppa:jon-severinsson/ffmpeg
+
 	echo "Some prerequisites needs to be installed"
+	sudo apt-get update
 	sudo apt-get install $needsinstall
 fi
 
