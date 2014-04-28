@@ -14,16 +14,9 @@
 # limitations under the License.
 
 echo "Checking if prerequisites are installed"
-for f in `echo mplayer` `echo movie-to-dvd` `echo dvdauthor` `echo genisoimage` `echo libxvidcore4`
+for f in `echo libav-tools` `echo dvdauthor` `echo genisoimage`
 do
-	if [ $f == "libxvidcore4" ]; then
-		if ( ! locate libxvidcore4 &> /dev/null ); then
-			needsinstall="$needsinstall $f"
-		fi
-	elif ( ! type -a $f &> /dev/null ); then
-		if [ $f == "movie-to-dvd" ]; then
-			f="videotrans"
-		fi
+	if ( ! type -a $f &> /dev/null ); then
 		needsinstall="$needsinstall $f"
 	fi
 done
@@ -41,10 +34,10 @@ read videostandard
 
 if [ $videostandard == "NTSC" ] || [ $videostandard == "ntsc" ]; then
 	export VIDEO_FORMAT=NTSC
-	movietodvdstandard=ntsc
+	movietodvdstandard=ntsc-dvd
 elif [ $videostandard == "PAL" ] || [ $videostandard == "pal" ]; then
 	export VIDEO_FORMAT=PAL
-	movietodvdstandard=pal
+	movietodvdstandard=pal-dvd
 else
 	echo "You did not type in the correct response! try again.."
 	echo ""
@@ -66,9 +59,7 @@ cd "$whereisvideo"/temp
 
 movietitle=$(echo "$moviefile" | sed s/\.[^\.]*$//)
 
-movie-to-dvd -m $movietodvdstandard -o . ../"$moviefile"
-
-mplex -f 8 -o "$movietitle".mpg "$movietitle".m2v "$movietitle".ac3
+avconv -i ../"$moviefile" -qscale 1 -target $movietodvdstandard "$movietitle".mpg
 
 dvdauthor -o dvd/ -t "$movietitle".mpg
 
