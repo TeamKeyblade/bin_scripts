@@ -13,5 +13,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-sudo yum localinstall --nogpgcheck http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
-sudo yum localinstall --nogpgcheck http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+yumrepo=$(echo "/etc/yum.repos.d")
+
+if ( find $yumrepo/rpmfusion-free.repo -maxdepth 1 &> /dev/null); then
+	echo "rpmfusion free already installed!"
+else
+	echo "installing rpmfusion free"
+	sudo yum localinstall --nogpgcheck http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
+fi
+
+if ( find $yumrepo/rpmfusion-nonfree.repo -maxdepth 1 &> /dev/null); then
+	echo "rpmfusion nonfree already installed!"
+else
+	echo "installing rpmfusion nonfree"
+	sudo yum localinstall --nogpgcheck http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+fi
