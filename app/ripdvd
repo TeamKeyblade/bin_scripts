@@ -44,7 +44,20 @@ cd ./temp
 
 vobcopy -m
 
-cat VIDEO_TS/VTS_01_1.VOB VIDEO_TS/VTS_01_2.VOB VIDEO_TS/VTS_01_3.VOB VIDEO_TS/VTS_01_4.V0B > "$moviename".vob
+for video in `find VTS_01_*.VOB`
+do
+	if [ $video == "VTS_01_0.VOB" ]; then
+		echo "Skipping VTS_01_0.VOB"
+	else
+		if [ ! "$catvideo" ]; then
+			catvideo="$video"
+		else
+			catvideo="$catvideo $video"
+		fi
+	fi
+done
+
+cat $catvideo > "$moviename".vob
 
 avconv -i "$moviename".vob -c:v libx264 -c:a ac3 ../"$movietitle".mp4
 
