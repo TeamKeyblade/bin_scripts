@@ -14,7 +14,7 @@
 # limitations under the License.
 
 echo "Checking if prerequisites are installed"
-for f in `echo avconv` `echo dvdauthor` `echo genisoimage`
+for f in `echo avconv` `echo vobcopy`
 do
 	if ( ! type -a $f &> /dev/null ); then
 		if [ $f == "avconv" ]; then
@@ -35,45 +35,18 @@ else
 	sudo apt-get install $needsinstall
 fi
 
-videostandard () {
-echo "Is this dvd going to be NTSC or PAL?"
-read videostandard
+devname=$(blkid | grep udf | sed 's/: .*//')
+moviename=$(blkid | grep $devname | sed 's/.*LABEL="//' | sed 's/" .*//')
+movietitle=$(echo "$moviename" | sed 's/_/ /g' | sed 's/\(.*\)/\L\1/' | sed 's/\b\(.\)/\u\1/g')
 
-if [ $videostandard == "NTSC" ] || [ $videostandard == "ntsc" ]; then
-	export VIDEO_FORMAT=NTSC
-	movietodvdstandard=ntsc-dvd
-elif [ $videostandard == "PAL" ] || [ $videostandard == "pal" ]; then
-	export VIDEO_FORMAT=PAL
-	movietodvdstandard=pal-dvd
-else
-	echo "You did not type in the correct response! try again.."
-	echo ""
-	videostandard
-fi
-}
-videostandard
+mkdir -p ./temp
+cd ./temp
 
-echo "Where is the video that is being converted at exactly?"
-echo "Example: If it is in your home folder it will be at $HOME"
-read whereisvideo
+vobcopy -m
 
-echo "What is the name of the video file? please include extension"
-echo "Example: i_am_a_valid_video_file.mp4"
-read moviefile
+cat VIDEO_TS/VTS_01_1.VOB VIDEO_TS/VTS_01_2.VOB VIDEO_TS/VTS_01_3.VOB VIDEO_TS/VTS_01_4.V0B > "$moviename".vob
 
-mkdir -p "$whereisvideo"/temp
-cd "$whereisvideo"/temp
+avconv -i "$moviename".vob -c:v libx264 -c:a ac3 ../"$movietitle".mp4
 
-movietitle=$(echo "$moviefile" | sed s/\.[^\.]*$//)
-# vobcopy -m
-avconv -i ../"$moviefile" -qscale 1 -vf "scale=640:-1" -target $movietodvdstandard "$movietitle".mpg
-# cat VIDEO_TS/VTS_01_1.VOB VIDEO_TS/VTS_01_2.VOB VIDEO_TS/VTS_01_3.VOB VIDEO_TS/VTS_01_4.V0B > logansrun.vob
-
-dvdauthor -o dvd/ -t "$movietitle".mpg
-
-dvdauthor -o dvd/ -T
-genisoimage -dvd-video -v -o ../"$movietitle".iso dvd
-
-# avconv -i logansrun.vob -c:v libx264 -c:a ac3 logansrun.mp4
 cd ..
 rm -r temp
