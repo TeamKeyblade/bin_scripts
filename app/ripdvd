@@ -44,9 +44,9 @@ cd ./temp
 
 vobcopy -m
 
-for video in `find VTS_01_*.VOB`
+for video in `find $moviename/VIDEO_TS/VTS_01_*.VOB`
 do
-	if [ $video == "VTS_01_0.VOB" ]; then
+	if [ $video == "$moviename/VIDEO_TS/VTS_01_0.VOB" ]; then
 		echo "Skipping VTS_01_0.VOB"
 	else
 		if [ ! "$catvideo" ]; then
