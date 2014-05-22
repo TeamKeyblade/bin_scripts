@@ -35,6 +35,11 @@ else
 	sudo apt-get install $needsinstall
 fi
 
+if ( ! blkid | grep -q udf ); then
+	echo "No DVD found! Quitting"
+	exit 0
+fi
+
 devname=$(blkid | grep udf | sed 's/: .*//')
 moviename=$(blkid | grep $devname | sed 's/.*LABEL="//' | sed 's/" .*//')
 movietitle=$(echo "$moviename" | sed 's/_/ /g' | sed 's/\(.*\)/\L\1/' | sed 's/\b\(.\)/\u\1/g')
