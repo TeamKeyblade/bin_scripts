@@ -38,4 +38,4 @@ else
 	webseed=""
 fi
 
-mktorrent -a udp://coppersurfer.tk:6969/announce -a udp://open.demonii.com:1337 $webseed $1
+mktorrent -a udp://coppersurfer.tk:6969/announce -a udp://open.demonii.com:1337 $webseed "$1"
