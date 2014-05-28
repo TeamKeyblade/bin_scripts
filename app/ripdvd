@@ -66,5 +66,13 @@ cat $catvideo > "$moviename".vob
 
 avconv -i "$moviename".vob -c:v libx264 -c:a ac3 ../"$movietitle".mp4
 
+echo "Do you also want to create an iso out of vobcopy output?"
+echo "This will result in a dvd copy free of drm"
+read mkiso
+
+if [ $mkiso == "yes"] || [ $mkiso == "y"]; then
+	genisoimage -dvd-video -v -o ../"$moviename".iso $moviename
+fi
+
 cd ..
 rm -r temp
