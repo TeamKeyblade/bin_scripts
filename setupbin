@@ -13,13 +13,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-cd ~
-if ( grep -q HOME/bin/android .profile );then
+if ( grep -q HOME/bin/android $HOME/.profile ); then
 	echo ".profile doesn't need to be patched"
-elif ( ! grep -q HOME/bin/android .profile )  && ( find $HOME/bin/private &> /dev/null );then
-	sed -i '/PATH"/ a\    PATH="$HOME/bin/android:$HOME/bin/app:$HOME/bin/private:$HOME/bin/server:$PATH"' .profile
-	echo "patched .profile"
 else
-	sed -i '/PATH"/ a\    PATH="$HOME/bin/android:$HOME/bin/app:$HOME/bin/server:$PATH"' .profile
+	sed -i '/PATH"/ a\    PATH="$HOME/bin/android:$HOME/bin/app:$HOME/bin/server:$PATH"' $HOME/.profile
 	echo "patched .profile"
+fi
+
+if ( ! grep -q HOME/bin/private $HOME/.profile ) && ( find $HOME/bin/private &> /dev/null ); then
+	sed -i '/PATH=$HOME"/ a\    PATH="$HOME/bin/private:$PATH"' $HOME/.profile
+	echo "patched .profile to include private"
 fi
