@@ -21,6 +21,6 @@ else
 fi
 
 if ( ! grep -q HOME/bin/private $HOME/.profile ) && ( find $HOME/bin/private &> /dev/null ); then
-	sed -i '/PATH=$HOME"/ a\    PATH="$HOME/bin/private:$PATH"' $HOME/.profile
+	sed -i '/PATH="$HOME/bin/android/ a\    PATH="$HOME/bin/private:$PATH"' $HOME/.profile
 	echo "patched .profile to include private"
 fi
