@@ -53,7 +53,7 @@ echo "Do you also want to create an iso out of vobcopy output?"
 echo "This will result in a dvd copy free of drm"
 read mkiso
 
-if [ $mkiso == "yes"] || [ $mkiso == "y"]; then
+if [ $mkiso == "yes" ] || [ $mkiso == "y" ]; then
 	genisoimage -dvd-video -v -o ../"$moviename".iso $moviename
 fi
 
