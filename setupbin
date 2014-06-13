@@ -16,8 +16,15 @@
 if ( grep -q HOME/bin/android $HOME/.bash_profile ); then
 	echo ".bash_profile doesn't need to be patched"
 else
-	sed -i '/PATH"/ a\    PATH="$HOME/bin/android:$HOME/bin/app:$HOME/bin/server:$PATH"' $HOME/.bash_profile
-	echo "patched .bash_profile"
+
+cat << EOF >> ~/.bash_profile
+# set PATH so it includes user's private bin if it exists
+if [ -d "\$HOME/bin" ] ; then
+    PATH="\$HOME/bin:\$PATH"
+    PATH="\$HOME/bin/app:\$HOME/bin/server:\$PATH"
+fi
+EOF
+
 fi
 
 if ( ! grep -q HOME/bin/private $HOME/.bash_profile ) && ( find $HOME/bin/private &> /dev/null ); then
