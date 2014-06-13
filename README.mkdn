@@ -1,4 +1,4 @@
-Swordrune10's Redhat/Fedora Scripts
+Swordrune10's Chrome OS Scripts
 -------------------------
 
 
