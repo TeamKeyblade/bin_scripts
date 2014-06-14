@@ -26,7 +26,7 @@ if [ -d "\$HOME/bin" ] ; then
 fi
 
 # set HOME as executable
-# mount -io remount,exec ~
+sudo mount -io remount,exec ~
 EOF
 
 echo "patched .bash_profile"
