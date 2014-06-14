@@ -13,4 +13,33 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+github=$( echo "wget -Nq https://raw.githubusercontent.com/TeamKeyblade/bin_scripts/chromeos" )
 
+cd ~
+mkdir bin
+cd bin
+
+$github/LICENSE
+$github/NOTICE
+$github/README.mkdn
+$github/chromeinstall
+$github/repo
+$github/setupbin
+$github/updatebin
+
+mkdir app
+cd app
+
+$github/app/gitsubmit
+$github/app/mountmtp
+$github/app/torrentmaker
+$github/app/umountmtp
+
+mkdir ../server
+cd ../server
+
+$github/server/dropboxstatus
+$github/server/killback
+$github/server/nitenite
+$github/server/rmdropbox
+$github/server/setupdropbox
