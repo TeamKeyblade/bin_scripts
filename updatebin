@@ -19,40 +19,62 @@ cd ~
 mkdir -p bin
 cd bin
 
+echo "Grabbing bin folder items"
+echo "Grabbing LICENSE file.."
 $github/LICENSE
+echo "Grabbing NOTICE file.."
 $github/NOTICE
+echo "Grabbing README.mkdn file.."
 $github/README.mkdn
+echo "Grabbing repo file.."
 $github/repo
 chmod +x repo
+echo "Grabbing setupbin file.."
 $github/setupbin
 chmod +x setupbin
+echo "Grabbing unsetbin file.."
 $github/unsetbin
 chmod +x unsetbin
+echo "Grabbing updatebin file.."
 $github/updatebin
 chmod +x updatebin
+echo "Finished bin folder items"
 
 mkdir -p app
 cd app
 
+echo "Grabbing app folder items"
+echo "Grabbing gitsubmit file.."
 $github/app/gitsubmit
 chmod +x gitsubmit
+echo "Grabbing mountmtp file.."
 $github/app/mountmtp
 chmod +x mountmtp
+echo "Grabbing torrentmaker file.."
 $github/app/torrentmaker
 chmod +x torrentmaker
+echo "Grabbing umountmtp file.."
 $github/app/umountmtp
 chmod +x umountmtp
+echo "Finished app folder items"
 
 mkdir -p ../server
 cd ../server
 
+echo "Grabbing server folder items"
+echo "Grabbing dropboxstatus file.."
 $github/server/dropboxstatus
 chmod +x dropboxstatus
+echo "Grabbing killback file.."
 $github/server/killback
 chmod +x killback
+echo "Grabbing nitenite file.."
 $github/server/nitenite
 chmod +x nitenite
+echo "Grabbing rmdropbox file.."
 $github/server/rmdropbox
 chmod +x rmdropbox
+echo "Grabbing setupdropbox file.."
 $github/server/setupdropbox
 chmod +x setupdropbox
+echo "Finished server folder items"
