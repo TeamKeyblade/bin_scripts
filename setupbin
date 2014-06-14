@@ -18,13 +18,18 @@ if ( grep -q HOME/bin/android $HOME/.bash_profile ); then
 else
 
 cat << EOF >> ~/.bash_profile
+
 # set PATH so it includes user's private bin if it exists
 if [ -d "\$HOME/bin" ] ; then
     PATH="\$HOME/bin:\$PATH"
     PATH="\$HOME/bin/app:\$HOME/bin/server:\$PATH"
 fi
+
+# set HOME as executable
+mount -io remount,exec ~
 EOF
 
+echo "patched .bash_profile"
 fi
 
 if ( ! grep -q HOME/bin/private $HOME/.bash_profile ) && ( find $HOME/bin/private &> /dev/null ); then
