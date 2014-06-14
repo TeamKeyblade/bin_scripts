@@ -40,6 +40,8 @@ $github/updatebin
 chmod +x updatebin
 echo "Finished bin folder items"
 
+echo ""
+
 mkdir -p app
 cd app
 
@@ -57,6 +59,8 @@ echo "Grabbing umountmtp file.."
 $github/app/umountmtp
 chmod +x umountmtp
 echo "Finished app folder items"
+
+echo ""
 
 mkdir -p ../server
 cd ../server
