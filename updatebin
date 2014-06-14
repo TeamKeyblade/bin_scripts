@@ -16,7 +16,7 @@
 github=$( echo "wget -Nq https://raw.githubusercontent.com/TeamKeyblade/bin_scripts/chromeos" )
 
 cd ~
-mkdir bin
+mkdir -p bin
 cd bin
 
 $github/LICENSE
@@ -31,7 +31,7 @@ chmod +x unsetbin
 $github/updatebin
 chmod +x updatebin
 
-mkdir app
+mkdir -p app
 cd app
 
 $github/app/gitsubmit
@@ -43,7 +43,7 @@ chmod +x torrentmaker
 $github/app/umountmtp
 chmod +x umountmtp
 
-mkdir ../server
+mkdir -p ../server
 cd ../server
 
 $github/server/dropboxstatus
