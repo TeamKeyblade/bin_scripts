@@ -23,23 +23,36 @@ $github/LICENSE
 $github/NOTICE
 $github/README.mkdn
 $github/chromeinstall
+chmod +x chromeinstall
 $github/repo
+chmod +x repo
 $github/setupbin
+chmod +x setupbin
 $github/updatebin
+chmod +x updatebin
 
 mkdir app
 cd app
 
 $github/app/gitsubmit
+chmod +x gitsubmit
 $github/app/mountmtp
+chmod +x mountmtp
 $github/app/torrentmaker
+chmod +x torrentmaker
 $github/app/umountmtp
+chmod +x umountmtp
 
 mkdir ../server
 cd ../server
 
 $github/server/dropboxstatus
+chmod +x dropboxstatus
 $github/server/killback
+chmod +x killback
 $github/server/nitenite
+chmod +x nitenite
 $github/server/rmdropbox
+chmod +x rmdropbox
 $github/server/setupdropbox
+chmod +x setupdropbox
