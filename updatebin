@@ -22,12 +22,12 @@ cd bin
 $github/LICENSE
 $github/NOTICE
 $github/README.mkdn
-$github/chromeinstall
-chmod +x chromeinstall
 $github/repo
 chmod +x repo
 $github/setupbin
 chmod +x setupbin
+$github/unsetbin
+chmod +x unsetbin
 $github/updatebin
 chmod +x updatebin
 
