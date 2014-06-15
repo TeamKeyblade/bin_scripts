@@ -43,12 +43,6 @@ echo "What is the name of the video file? please include extension"
 echo "Example: i_am_a_valid_video_file.mp4"
 read moviefile
 
-mkdir -p "$whereisvideo"/temp
-cd "$whereisvideo"/temp
-
 movietitle=$(echo "$moviefile" | sed s/\.[^\.]*$//)
 
-avconv -i ../"$moviefile" -qscale 1 -vf "scale=640:-1" -c:v libx264 -c:a ac3 "$movietitle".mp4
-
-cd ..
-rm -r temp
+avconv -i "$moviefile" -qscale 1 -vf "scale=640:-1" -c:v libx264 -c:a ac3 "$movietitle".mp4
