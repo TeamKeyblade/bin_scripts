@@ -22,22 +22,22 @@ cd bin
 
 echo "Grabbing bin folder items"
 echo "Grabbing LICENSE file.."
-$github/LICENSE 2>&1 | grep --color=never retrieving
+$github/LICENSE $grepopt
 echo "Grabbing NOTICE file.."
-$github/NOTICE 2>&1 | grep --color=never retrieving
+$github/NOTICE $grepopt
 echo "Grabbing README.mkdn file.."
-$github/README.mkdn 2>&1 | grep --color=never retrieving
+$github/README.mkdn $grepopt
 echo "Grabbing repo file.."
-$github/repo 2>&1 | grep --color=never retrieving
+$github/repo $grepopt
 chmod +x repo
 echo "Grabbing setupbin file.."
-$github/setupbin 2>&1 | grep --color=never retrieving
+$github/setupbin $grepopt
 chmod +x setupbin
 echo "Grabbing unsetbin file.."
-$github/unsetbin 2>&1 | grep --color=never retrieving
+$github/unsetbin $grepopt
 chmod +x unsetbin
 echo "Grabbing updatebin file.."
-$github/updatebin 2>&1 | grep --color=never retrieving
+$github/updatebin $grepopt
 chmod +x updatebin
 echo "Finished bin folder items"
 
@@ -48,16 +48,16 @@ cd app
 
 echo "Grabbing app folder items"
 echo "Grabbing gitsubmit file.."
-$github/app/gitsubmit 2>&1 | grep --color=never retrieving
+$github/app/gitsubmit $grepopt
 chmod +x gitsubmit
 echo "Grabbing mountmtp file.."
-$github/app/mountmtp 2>&1 | grep --color=never retrieving
+$github/app/mountmtp $grepopt
 chmod +x mountmtp
 echo "Grabbing torrentmaker file.."
-$github/app/torrentmaker 2>&1 | grep --color=never retrieving
+$github/app/torrentmaker $grepopt
 chmod +x torrentmaker
 echo "Grabbing umountmtp file.."
-$github/app/umountmtp 2>&1 | grep --color=never retrieving
+$github/app/umountmtp $grepopt
 chmod +x umountmtp
 echo "Finished app folder items"
 
@@ -68,18 +68,18 @@ cd ../server
 
 echo "Grabbing server folder items"
 echo "Grabbing dropboxstatus file.."
-$github/server/dropboxstatus 2>&1 | grep --color=never retrieving
+$github/server/dropboxstatus $grepopt
 chmod +x dropboxstatus
 echo "Grabbing killback file.."
-$github/server/killback 2>&1 | grep --color=never retrieving
+$github/server/killback $grepopt
 chmod +x killback
 echo "Grabbing nitenite file.."
-$github/server/nitenite 2>&1 | grep --color=never retrieving
+$github/server/nitenite $grepopt
 chmod +x nitenite
 echo "Grabbing rmdropbox file.."
-$github/server/rmdropbox 2>&1 | grep --color=never retrieving
+$github/server/rmdropbox $grepopt
 chmod +x rmdropbox
 echo "Grabbing setupdropbox file.."
-$github/server/setupdropbox 2>&1 | grep --color=never retrieving
+$github/server/setupdropbox $grepopt
 chmod +x setupdropbox
 echo "Finished server folder items"
