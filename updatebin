@@ -14,7 +14,7 @@
 # limitations under the License.
 
 github=$( echo "wget -Nq https://raw.githubusercontent.com/TeamKeyblade/bin_scripts/chromeos" )
-grepopt=$( echo "2>&1 | grep --color=never retrieving" )
+grepopt=$( echo '2>&1 | grep --color=never retrieving' )
 
 cd ~
 mkdir -p bin
