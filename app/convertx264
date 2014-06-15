@@ -48,7 +48,7 @@ cd "$whereisvideo"/temp
 
 movietitle=$(echo "$moviefile" | sed s/\.[^\.]*$//)
 
-avconv -i ../"$moviefile" -qscale 1 -vf "scale=640:-1" -c:v libx264 -c:a ac3 "$movietitle".mpg
+avconv -i ../"$moviefile" -qscale 1 -vf "scale=640:-1" -c:v libx264 -c:a ac3 "$movietitle".mp4
 
 cd ..
 rm -r temp
