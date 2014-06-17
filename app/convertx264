@@ -45,4 +45,6 @@ read moviefile
 
 movietitle=$(echo "$moviefile" | sed s/\.[^\.]*$//)
 
+cd "$whereisvideo"
+
 avconv -i "$moviefile" -qscale 1 -vf "scale=640:-1" -c:v libx264 -c:a ac3 "$movietitle".mp4
