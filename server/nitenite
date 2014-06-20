@@ -14,19 +14,16 @@
 # limitations under the License.
 
 main() {
-clear
-cd ~
 echo "How long would you like the computer to sleep for?"
 echo "Type list to see a list of units of time supported"
 echo "Type exit to leave program"
 echo "Example = 10 hours"
 read decision
 
-#if what was typed had any upper case letters convert it 
-#to lower case into another file and then rewrite the 
-#variable with the modification
+#if what was typed had any upper case letters convert it
+#to lower case
 
-if ( echo $decision | grep -q [A-Z] );then 
+if ( echo $decision | grep -q [A-Z] );then
 	decision=$(echo $decision | sed -e 's/\(.*\)/\L\1/')
 fi
 
@@ -37,7 +34,7 @@ length=$(echo $decision | sed 's/[^a-z]*//g')
 
 #exit if; quit program immediately if told to do so, easy way to work on this script
 
-if [ $length == "exit" ]; then
+if [ "$length" == "exit" ]; then
 	clear
 	echo "Program Terminated"
 	exit 0
@@ -45,7 +42,7 @@ fi
 
 #list if; type list and u get all the units in a list! amazing!
 
-if [ $length == "list" ]; then
+if [ "$length" == "list" ]; then
 	echo ""
 	echo "All supported units of time is:"
 	echo "seconds, minutes, hours, days, weeks, fortnights,"
