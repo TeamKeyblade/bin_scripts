@@ -35,7 +35,6 @@ length=$(echo $decision | sed 's/[^a-z]*//g')
 #exit if; quit program immediately if told to do so, easy way to work on this script
 
 if [ "$length" == "exit" ]; then
-	clear
 	echo "Program Terminated"
 	exit 0
 fi
@@ -52,8 +51,7 @@ if [ "$length" == "list" ]; then
 fi
 
 #this checks to see if what was typed had any numbers in
-#it, and if it doesnt the script will delete all unnecessary files
-#and terminate early
+#it, and if it doesnt the script will start over
 
 if ( ! echo $time | grep -q [0-9]); then
 	echo ""
@@ -62,8 +60,8 @@ if ( ! echo $time | grep -q [0-9]); then
 	main
 fi
 
-#the beginning of all the if statements to figure out how to calculate the results, 
-#it uses the unit of time specified to determine the length of the 
+#the beginning of all the if statements to figure out how to calculate the results,
+#it uses the unit of time specified to determine the length of the
 #effect the user wants
 
 #seconds if; easy
@@ -110,7 +108,7 @@ if [ $length == "month" ] || [ $length == "months" ]; then
 fi
 
 #years if; because of the calculated disaster of months i had to use the only
-#one that wasnt a decimal, which is ironically the actual answer of seconds 
+#one that wasnt a decimal, which is ironically the actual answer of seconds
 #there is in a year x.x
 #after this it will go back to just multiplying from this
 
