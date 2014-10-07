@@ -1,0 +1,67 @@
+#!/bin/bash
+# Copyright (C) 2014 Sean Donovan
+
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+
+#    http://www.apache.org/licenses/LICENSE-2.0
+
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+menu () {
+echo "New Upload or Patch a Current One?"
+echo "Type new or current"
+read upload
+
+echo "Adding files and Create Commit Message"
+git add -A
+
+if [ $upload == "new"]; then
+	git commit
+	echo "Username?"
+	read username
+
+	echo "Website?"
+	read website
+
+	echo "Repo Name?"
+	read reponame
+
+	echo "Repo Directory?"
+	read repodir
+
+	echo "Branch?"
+	read branch
+
+	git push ssh://"$username"@"$website":29418/"$reponame"/"$repodir" HEAD:refs/for/"$branch"
+elif [ $upload == "current" ]; then
+	git commit --amend
+
+	echo "Username?"
+	read username
+
+	echo "Website?"
+	read website
+
+	echo "Repo Name?"
+	read reponame
+
+	echo "Repo Directory?"
+	read repodir
+
+	echo "Review Code?"
+	read reviewcode
+
+	git push ssh://"$username"@"$website":29418/"$reponame"/"$repodir" HEAD:refs/changes/"$reviewcode"
+else
+	echo "Not a Proper Selection!"
+        read -p "Press Enter to Continue" done
+	menu
+fi
+}
+menu
