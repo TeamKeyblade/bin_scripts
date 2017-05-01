@@ -1,0 +1,49 @@
+#!/bin/bash
+# Copyright (C) 2014 Sean Donovan
+
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+
+#    http://www.apache.org/licenses/LICENSE-2.0
+
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+echo "Checking if prerequisites are installed"
+for f in `echo avconv`
+do
+	if ( ! type -a $f &> /dev/null ); then
+		if [ $f == "avconv" ]; then
+			f="libav-tools"
+		fi
+		needsinstall="$needsinstall $f"
+	fi
+done
+
+if [ ! "$needsinstall" ]; then
+	echo "All prerequisites are already installed"
+else
+	echo "Adding necessary repo"
+	addrepo ppa:jon-severinsson/ffmpeg
+
+	echo "Some prerequisites needs to be installed"
+	sudo apt-get update
+	sudo apt-get install $needsinstall
+fi
+
+echo "Where is the music that is being converted at exactly?"
+echo "Example: If it is in your home folder it will be at $HOME"
+read whereismusic
+
+cd "$whereismusic"
+
+for albumlist in ./*.flac
+do
+	#if ( echo $albumlist | grep -q ".flac" ); then	
+		avconv -i "$audiofile" -c:a libmp3lame "${a[@]/%flac/mp3}"
+	#fi
+done
