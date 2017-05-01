@@ -44,6 +44,6 @@ cd "$whereismusic"
 for albumlist in ./*.flac
 do
 	#if ( echo $albumlist | grep -q ".flac" ); then	
-		avconv -i "$audiofile" -c:a libmp3lame "${a[@]/%flac/mp3}"
+		avconv -i "$albumlist" -c:a libmp3lame "${albumlist[@]/%flac/mp3}"
 	#fi
 done
