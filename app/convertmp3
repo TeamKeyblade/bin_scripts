@@ -47,4 +47,4 @@ audiotitle=$(echo "$audiofile" | sed s/\.[^\.]*$//)
 
 cd "$whereismusic"
 
-avconv -i "$audiofile" -c:a libmp3lame "$audiotitle".mp4
+avconv -i "$audiofile" -c:a libmp3lame "$audiotitle".mp3
